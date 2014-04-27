@@ -1,0 +1,10 @@
+useDynLib(ClickClust)
+
+export(click.EM)
+export(click.sim)
+export(click.read)
+export(click.forward)
+export(click.backward)
+export(click.var)
+export(click.plot)
+
