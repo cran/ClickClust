@@ -152,13 +152,13 @@ void init(int p, int n, int K, int ***x, double *alpha, double ***Pi, int h, dou
 	bestll = -inf;
 
 	for (s=0; s<h; s++){
-		
+//		printf("EE1\n");		
 		for (k=0; k<K; k++){
 			alpha[k] = 1.0 / K;
 		}
-		
+//		printf("EE2\n");			
 		srswor(K, n, starts);
-		
+//		printf("EE3\n");			
 		for (k=0; k<K; k++){
 			for (j=0; j<p; j++){
 				a = 0;
@@ -184,14 +184,15 @@ void init(int p, int n, int K, int ***x, double *alpha, double ***Pi, int h, dou
 	
 		step = 0;
 		while (step < shortem){
-
+//		printf("UUU\n");
 			Estep(p, n, x, alpha, Pi, gamma1, K);
 			Mstep(p, n, x, alpha, Pi, gamma1, K, lowPi, nj);
 			
 			step++;
 		}	
 
-		ll = logL_kernel(p, n, K, x, alpha, Pi, scaleconst, ntotal);	
+		ll = logL_kernel(p, n, K, x, alpha, Pi, scaleconst, ntotal);
+
 				
 		if (ll > bestll){
 			
@@ -228,15 +229,15 @@ void EM(int p, int n, int ***x, double *alpha, double ***Pi, double **gamma, int
 	M = K - 1 + K * p * (p - 1);
 	
 	step = 0;
-		
+//		printf("AAA\n");
 	init(p, n, K, x, alpha, Pi, h, lowPi, nj, scaleconst, ntotal, shortem);
-	
+//		printf("BBB\n");	
 	llold = -inf;
 	ll = logL_kernel(p, n, K, x, alpha, Pi, scaleconst, ntotal);
 	
 
 	while ((ll - llold) / fabs(ll) > tol){
-		
+//		printf("CCC\n");		
 		step++;
 		llold = ll;
 			

@@ -7,4 +7,5 @@ export(click.forward)
 export(click.backward)
 export(click.var)
 export(click.plot)
+export(click.predict)
 

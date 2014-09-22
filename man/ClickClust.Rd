@@ -6,8 +6,8 @@
 Runs the EM algorithm for finite mixture models with Markov model components.
 }
 \usage{
-click.EM(X, y = NULL, K, eps = 10^-10, r = 100, iter = 5, min.beta = 10^-3,
-  min.gamma = 10^-3, scale.const = 1)
+click.EM(X, y = NULL, K, eps = 1e-10, r = 100, iter = 5, min.beta = 1e-3,
+  min.gamma = 1e-3, scale.const = 1)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -35,8 +35,7 @@ Notation: p - number of states, n - sample size, K - number of mixture component
   \item{BIC }{ Bayesian Information Criterion}
 }
 \references{
-Melnykov, V. (2014) Model-based biclustering of clickstream data, under revision.
-}
+Melnykov, V. (2014) Model-based biclustering of clickstream data, accepted by Computational Statistics & Data Analysis.}
 \author{ Melnykov, V.}
 
 \seealso{click.plot, click.forward, click.backward}

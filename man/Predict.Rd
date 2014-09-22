@@ -1,33 +1,21 @@
-\name{click.plot}
-\alias{click.plot}
+\name{click.predict}
+\alias{click.predict}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{ Plot of the obtained clustering solution }
+\title{ Prediction of future state visits}
 \description{
-Constructs a click-plot for the clustering solution.
+Calculates the transition probability matrix associated with the M-step transition.
 }
 \usage{
-click.plot(X, y = NULL, file = NULL, id, margs = c(0.1, 0.1, 0.1, 0.1),
-  font.cex = 2, font.col = "black", cell.cex = 1, cell.lwd = 1.3,
-  cell.col = "red", sep.lwd = 1.3, sep.col = "magenta", obs.lwd = 0.5)
+click.predict(M = 1, gamma, pr = NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{X }{ dataset array (p x p x n) }
-  \item{y }{ vector of initial states (length n) }
-  \item{file }{ name of the output pdf-file }
-  \item{id }{ estimated classification vector (length n) }
-  \item{margs }{ plot margins }
-  \item{font.cex }{ magnification of labels }
-  \item{font.col }{ color of labels }
-  \item{cell.cex }{ magnification of cells }
-  \item{cell.lwd }{ width of cell frames }
-  \item{cell.col }{ color of cell frames }
-  \item{sep.lwd }{ width of separator lines }
-  \item{sep.col }{ color of separator lines }
-  \item{obs.lwd }{ width of observation lines }
+  \item{M }{ number of transition steps (M = 1 by default) }
+  \item{gamma }{ array of transition probabilities (p x p x K)}
+  \item{pr }{ vector of probabilities associated with components (length K)}
 }
 \details{
-Constructs a click-plot for the provided clustering solution. If the parameter 'file' is specified, the constructed plot will be saved in the pdf-file with the name 'file'.
+Returns a transition probability matrix associated with the M-step transition. If the vector pr is not specified, all components are assumed equally likely.
 }
 \references{
 Melnykov, V. (2014) Model-based biclustering of clickstream data, accepted by Computational Statistics & Data Analysis.
@@ -75,13 +63,18 @@ C <- click.read(p, A$S)
 M2 <- click.EM(X = C$X, y = C$y, K = 2)
 
 
-# CONSTRUCT CLICK-PLOT
+# Assuming component probabilities given by mixing proportions, predict the next state 
 
-click.plot(X = C$X, y = C$y, file = NULL, id = M2$id)
+click.predict(M = 1, gamma = M2$gamma, pr = M2$alpha)
+
+# For the last location in the first sequence, predict the three-step transition
+# location, given corresponding posterior probabilities
+
+click.predict(M = 3, gamma = M2$gamma, pr = M2$z[1,])[A$S[[1]][length(A$S[[1]])],]
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ click-plot }
+\keyword{ prediction }
 \keyword{ EM algorithm }
 \keyword{ Markov model }% __ONLY ONE__ keyword per line

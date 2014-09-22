@@ -1,3 +1,5 @@
+#ifndef CLICKCLUST_H
+#define CLICKCLUST_H
 
 void cpy1(double *a, int n, double *b);
 void cpy2(double **a, int nrows, int ncols, double **b);
@@ -23,5 +25,5 @@ void array1to2i(int a, int b, int *y, int **x);
 void array1to3i_(int a, int b, int c, int *y, int ***x);
 void array2to1i(int a, int b, int *y, int **x);
 void array3to1i_(int a, int b, int c, int *y, int ***x);
-//void parprint(int p, int K, double *alpha, double **beta, double ***Pi);
-//void gammaprint(int n, int K, double **gamma);
+
+#endif /* CLICKCLUST_H */

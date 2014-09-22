@@ -1,5 +1,5 @@
 
-click.EM <- function(X, y = NULL, K, eps = 10^-10, r = 100, iter = 5, min.beta = 10^-3, min.gamma = 10^-3, scale.const = 1.0){
+click.EM <- function(X, y = NULL, K, eps = 1e-10, r = 100, iter = 5, min.beta = 1e-3, min.gamma = 1e-3, scale.const = 1.0){
 
 	if (K < 1) stop("Wrong number of mixture components K...\n")
 	if (eps <= 0) stop("Wrong value of eps...\n")

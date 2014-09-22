@@ -1,4 +1,4 @@
-### Example 2 for Section 3.5
+### Example 2 for Section 3.6
 
 demo("sec3.2_ex2")
 

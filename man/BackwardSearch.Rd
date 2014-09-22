@@ -6,8 +6,8 @@
 Runs backward search to detect blocks of equivalent states.
 }
 \usage{
-click.backward(X, K, eps = 10^-10, r = 100, iter = 5, min.gamma = 10^-3,
-  scale.const = 1.0)
+click.backward(X, K, eps = 1e-10, r = 100, iter = 5, bic = TRUE,
+  min.gamma = 1e-3, scale.const = 1.0)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -16,6 +16,7 @@ click.backward(X, K, eps = 10^-10, r = 100, iter = 5, min.gamma = 10^-3,
   \item{eps }{ tolerance level }
   \item{r }{ number of restarts for initialization}
   \item{iter }{ number of iterations for each short EM run}
+  \item{bic }{ flag indicating whether BIC or AIC is used}
   \item{min.gamma }{ lower bound for transition probabilities }
   \item{scale.const }{ scaling constant for avoiding numerical issues }
 }
@@ -30,11 +31,11 @@ Notation: p - number of states, n - sample size, K - number of mixture component
   \item{states }{ detected equivalence blocks (length p)}
   \item{logl }{ log likelihood value}
   \item{BIC }{ Bayesian Information Criterion}
+  \item{AIC }{ Akaike Information Criterion}
   \item{id }{ classification vector (length n)}
 }
 \references{
-Melnykov, V. (2014) Model-based biclustering of clickstream data, under revision.
-}
+Melnykov, V. (2014) Model-based biclustering of clickstream data, accepted by Computational Statistics & Data Analysis.}
 \author{ Melnykov, V.}
 
 \seealso{forward.search, click.EM}

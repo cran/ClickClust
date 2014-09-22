@@ -21,7 +21,7 @@ Prepares sequences of visited states for running the EM algorithm by means of th
   \item{y }{ vector of initial states (length n) }
 }
 \references{
-Melnykov, V. (2014) Model-based biclustering of clickstream data, under revision.
+Melnykov, V. (2014) Model-based biclustering of clickstream data, accepted by Computational Statistics & Data Analysis.
 }
 \author{ Melnykov, V.}
 

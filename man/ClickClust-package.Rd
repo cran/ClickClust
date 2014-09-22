@@ -25,7 +25,7 @@ Function 'click.EM' runs the EM algorithm for finite mixture models with Markov 
 Maintainer: Volodymyr Melnykov <vmelnykov@cba.ua.edu>
 }
 \references{
-Melnykov, V. (2014) Model-based biclustering of clickstream data, under revision.
+Melnykov, V. (2014) Model-based biclustering of clickstream data, accepted by Computational Statistics & Data Analysis.
 }
 \examples{
 

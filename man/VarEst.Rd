@@ -21,7 +21,7 @@ click.var(X, y = NULL, alpha, beta = NULL, gamma, z)
 Returns an estimated variance-covariance matrix for model parameter estimates.
 }
 \references{
-Melnykov, V. (2014) Model-based biclustering of clickstream data, under revision.
+Melnykov, V. (2014) Model-based biclustering of clickstream data, accepted by Computational Statistics & Data Analysis.
 }
 \author{ Melnykov, V.}
 

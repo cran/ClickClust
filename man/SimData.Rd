@@ -24,7 +24,7 @@ Simulates 'n' sequences of visited states according to the following mixture mod
   \item{id }{ true classification of simulated sequences}
 }
 \references{
-Melnykov, V. (2014) Model-based biclustering of clickstream data, under revision.
+Melnykov, V. (2014) Model-based biclustering of clickstream data, accepted by Computational Statistics & Data Analysis.
 }
 \author{ Melnykov, V.}
 

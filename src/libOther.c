@@ -84,20 +84,19 @@ void srswor(int M, int n, int *y){
 
 	MAKE_VECTOR(indy, n);   
   
-    for (k=0; k<n; k++) indy[k]=0;
+    for (k=0; k<n; k++) indy[k] = 0;
 
 	for (k=0; k<M; k++){
 	
-		flag=0;
+		flag = 0;
 	
-		while (flag==0){
-			
+		while (flag == 0){
+
 			#ifdef __HAVE_R_
 				v = floor(runif(0.0, n));
 			#else
 				v = rand() % n;
 			#endif			
-			
 			
 			if (indy[v] == 0){
 				y[k] = v;
@@ -142,8 +141,7 @@ double f_kernel(int p, int k, int i, int ***x, double ***Pi, int scaleconst){
 		}
 	}
 	
-//	printf("%lf ", exp(sum));
-	
+
 	return exp(sum);
 	
 }
