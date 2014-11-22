@@ -22,6 +22,6 @@ TP[,,2] <- matrix(c(0.15, 0.35, 0.20, 0.20, 0.10,
      
 # DATA SIMULATION
      
-A <- click.sim(n = n.seq, int = c(10, 50), alpha = mix.prop, gamma = TP); A
+A <- click.sim(n = n.seq, int = c(10, 50), alpha = mix.prop, gamma = TP)
 
-C <- click.read(p, A$S); C
+C <- click.read(p, A$S)

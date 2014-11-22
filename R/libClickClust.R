@@ -529,10 +529,13 @@ click.forward <- function(X, K, eps = 1e-10, r = 100, iter = 5, bic = TRUE, min.
 	Q <- click.EM(X = X1, K = K, eps = eps, r = r, iter = iter, min.gamma = min.gamma, scale.const = scale.const)
 
 	if (bic){
-		return(list(z = Q$z, id = Q$id, alpha = Q$alpha, gamma = Q$gamma, states = best.states, logl = best.ll, BIC = best.BIC))
+		ret <- list(z = Q$z, id = Q$id, alpha = Q$alpha, gamma = Q$gamma, states = best.states, logl = best.ll, BIC = best.BIC)
 	} else {
-		return(list(z = Q$z, id = Q$id, alpha = Q$alpha, gamma = Q$gamma, states = best.states, logl = best.ll, AIC = best.AIC))
+		ret <- list(z = Q$z, id = Q$id, alpha = Q$alpha, gamma = Q$gamma, states = best.states, logl = best.ll, AIC = best.AIC)
 	}
+
+	class(ret) <- "search"
+	return(ret)
 
 }
 
@@ -600,10 +603,13 @@ click.backward <- function(X, K, eps = 1e-10, r = 100, iter = 5, bic = TRUE, min
 	Q <- click.EM(X = X1, K = K, eps = eps, r = r, iter = iter, min.gamma = min.gamma, scale.const = scale.const)
 
 	if (bic){
-		return(list(z = Q$z, id = Q$id, alpha = Q$alpha, gamma = Q$gamma, states = best.states, logl = best.ll, BIC = best.BIC))
+		ret <- list(z = Q$z, id = Q$id, alpha = Q$alpha, gamma = Q$gamma, states = best.states, logl = best.ll, BIC = best.BIC)
 	} else {
-		return(list(z = Q$z, id = Q$id, alpha = Q$alpha, gamma = Q$gamma, states = best.states, logl = best.ll, AIC = best.AIC))
+		ret <- list(z = Q$z, id = Q$id, alpha = Q$alpha, gamma = Q$gamma, states = best.states, logl = best.ll, AIC = best.AIC)
 	}
+
+	class(ret) <- "search"
+	return(ret)
 
 }
 

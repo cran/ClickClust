@@ -1,4 +1,3 @@
-### Example for Section 3.1
 
 set.seed(123)
      

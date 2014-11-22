@@ -43,12 +43,100 @@ click.EM <- function(X, y = NULL, K, eps = 1e-10, r = 100, iter = 5, min.beta = 
 
 	if (!is.null(y)){
 
-		return(list(z = t(matrix(Q$gamma1, nrow = K)), id = Q$id + 1, alpha = Q$alpha, beta = matrix(Q$beta, ncol = p, byrow = TRUE), gamma = b, logl = Q$l[1], BIC = Q$l[2]))
+		ret <- list(z = t(matrix(Q$gamma1, nrow = K)), id = Q$id + 1, alpha = Q$alpha, beta = matrix(Q$beta, ncol = p, byrow = TRUE), gamma = b, logl = Q$l[1], BIC = Q$l[2])
 
 	} else {
 
-		return(list(z = t(matrix(Q$gamma1, nrow = K)), id = Q$id + 1, alpha = Q$alpha, gamma = b, logl = Q$l[1], BIC = Q$l[2]))
+		ret <- list(z = t(matrix(Q$gamma1, nrow = K)), id = Q$id + 1, alpha = Q$alpha, gamma = b, logl = Q$l[1], BIC = Q$l[2])
 
 	}
 
+	class(ret) <- "EM"
+	return(ret)
+
 }
+
+
+print.EM <- function(x, ...){
+        K <- length(x$alpha)
+        p <- dim(x$gamma)[1]
+	cat("\nK = ", K,
+	    ", p = ", p,
+            ", logl = ", x$logl,
+            ", BIC = ", x$BIC,
+            "\n", sep = "")
+        cat("\nCluster sizes:")
+        print(table(x$id))
+        cat("\nid: \n")
+        print(x$id)
+        cat("\nalpha: \n")
+        print(x$alpha)
+	if (!is.null(x$beta)){
+		cat("\nbeta: \n")
+        	print(x$beta)
+	}
+        cat("\nUse $ to access:\n\t-transition probability matrices (gamma)\n\t-posterior probabilities (z)\n")
+	invisible()
+} # End of print.EM().
+
+
+summary.EM <- function(object, ...){
+        K <- length(object$alpha)
+        p <- dim(object$gamma)[1]
+	cat("\nK = ", K,
+	    ", p = ", p,
+            ", logl = ", object$logl,
+            ", BIC = ", object$BIC,
+            "\n", sep = "")
+        cat("\nCluster sizes:")
+        print(table(object$id))
+	invisible()
+} # End of summary.EM().
+
+
+print.search <- function(x, ...){
+        K <- length(x$alpha)
+        p <- length(x$states)
+        d <- max(x$states)
+	cat("\nK = ", K,
+	    ", p = ", p,
+	    ", d = ", d,
+            ", logl = ", x$logl, sep = "")
+	if (is.null(x$BIC)) cat(", AIC = ", x$AIC, "\n", sep = "")
+		else cat(", BIC = ", x$BIC, "\n", sep = "")
+        cat("\nStates:")
+        print(x$states)
+        cat("\nCluster sizes:")
+        print(table(x$id))
+        cat("\nid: \n")
+        print(x$id)
+        cat("\nalpha: \n")
+        print(x$alpha)
+        cat("\nUse $ to access:\n\t-transition probability matrices (gamma)\n\t-posterior probabilities (z)\n")
+	invisible()
+} # End of print.search().
+
+
+summary.search <- function(object, ...){
+        K <- length(object$alpha)
+        p <- length(object$states)
+        d <- max(object$states)
+	cat("\nK = ", K,
+	    ", p = ", p,
+	    ", d = ", d,
+            ", logl = ", object$logl, sep = "")
+	if (is.null(object$BIC)) cat(", AIC = ", object$AIC, "\n", sep = "")
+		else cat(", BIC = ", object$BIC, "\n", sep = "")
+        cat("\nStates:")
+        print(object$states)
+        cat("\nCluster sizes:")
+        print(table(object$id))
+	invisible()
+} # End of summary.search().
+
+
+
+
+
+
+
