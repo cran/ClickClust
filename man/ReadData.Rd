@@ -6,18 +6,17 @@
 Prepares sequences of visited states for running the EM algorithm.
 }
 \usage{
-click.read(p, S)
+click.read(S)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{p }{ number of states }
-  \item{S }{ list of sequences }
+  \item{S }{ list of numeric sequences }
 }
 \details{
-Prepares sequences of visited states for running the EM algorithm by means of the click.EM function.
+Prepares sequences of visited states for running the EM algorithm by means of the click.EM() function.
 }
 \value{
-  \item{X }{ dataset array (p x p x n) }
+  \item{X }{ dataset array (p x p x n) (p - # of states, n - # of sequences) }
   \item{y }{ vector of initial states (length n) }
 }
 \references{
@@ -58,7 +57,7 @@ TP[,,2] <- TP2
 # DATA SIMULATION
 
 A <- click.sim(n = n.seq, int = c(10, 50), alpha = mix.prop, gamma = TP)
-C <- click.read(p, A$S)
+C <- click.read(A$S)
 C$X
 C$y
 

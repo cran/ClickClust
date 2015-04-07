@@ -49,9 +49,9 @@ click.sim <- function(n, int = c(5, 100), alpha, beta = NULL, gamma){
 
 
 
-click.read <- function(p, S){
+click.read <- function(S){
 
-	if (p < 1) stop("Wrong number of states p...\n")
+	p <- max(sapply(S, max))
 
 	n <- length(S)
 
@@ -176,7 +176,7 @@ state.bic <- function(X, K, states0, new.state, eps, r, iter, min.gamma, scale.c
 
 
 
-rearrange.states <- function(X, K, best.ll, best.states, eps, r, iter, min.gamma, scale.const, BIC.flag){
+rearrange.states <- function(X, K, best.ll, best.states, eps, r, iter, min.gamma, scale.const, BIC.flag, silent){
 
 	p <- dim(X)[1]
 	n.seq <- dim(X)[3]
@@ -185,7 +185,7 @@ rearrange.states <- function(X, K, best.ll, best.states, eps, r, iter, min.gamma
 
 	#########################################
 	# trying to move states to other groups of states
-	 cat("\nSTAGE B: Rearranging states...\n\n")
+	if (!silent) cat("\nSTAGE B: Rearranging states...\n\n")
 	#########################################
 
 	d.max <- max(states0)
@@ -216,7 +216,7 @@ rearrange.states <- function(X, K, best.ll, best.states, eps, r, iter, min.gamma
 
 						ll <- Q$logl + adjust - n.seq * log(p) + n.seq * log(d.max)
 
-						 cat("\tStates:", states, "\tlogL =", ll, "\n")
+						if (!silent) cat("\tStates:", states, "\tlogL =", ll, "\n")
 
 						if (!is.nan(ll)){	
 							if (ll > best.ll){
@@ -238,15 +238,15 @@ rearrange.states <- function(X, K, best.ll, best.states, eps, r, iter, min.gamma
 
 		if (BIC.flag){
 			best.BIC <- -2 * best.ll + M * log(n.seq)
-			cat("\tCurrent set of states:", best.states, "logL =", best.ll, "BIC =", best.BIC, "\n\n")
+			if (!silent) cat("\tCurrent set of states:", best.states, "logL =", best.ll, "BIC =", best.BIC, "\n\n")
 		} else {
 			best.AIC <- -2 * best.ll + M * 2
-			cat("\tCurrent set of states:", best.states, "logL =", best.ll, "AIC =", best.AIC, "\n\n")
+			if (!silent) cat("\tCurrent set of states:", best.states, "logL =", best.ll, "AIC =", best.AIC, "\n\n")
 		}
 		states0 <- best.states
 
 		if (improv.flag == 0){
-			cat("\tStopped rearrangement...\n\n")
+			if (!silent) cat("\tStopped rearrangement...\n\n")
 			break
 		}
 
@@ -261,7 +261,7 @@ rearrange.states <- function(X, K, best.ll, best.states, eps, r, iter, min.gamma
 }
 
 
-separate.states.BIC <- function(X, K, best.ll, best.states, eps, r, iter, min.gamma, scale.const, BIC.flag){
+separate.states.BIC <- function(X, K, best.ll, best.states, eps, r, iter, min.gamma, scale.const, BIC.flag, silent){
 
 	p <- dim(X)[1]
 	n.seq <- dim(X)[3]
@@ -282,7 +282,7 @@ separate.states.BIC <- function(X, K, best.ll, best.states, eps, r, iter, min.ga
 
 	###################################################
 	# checking the split of the state
-	 cat("\nSTAGE A: Separating states...\n\n")
+	if (!silent) cat("\nSTAGE A: Separating states...\n\n")
 	###################################################
 
 	d.max <- max(states0)
@@ -299,7 +299,7 @@ separate.states.BIC <- function(X, K, best.ll, best.states, eps, r, iter, min.ga
 				Q <- state.bic(X = X, K = K, states0 = states0, new.state = j, eps = eps, r = r, iter = iter, min.gamma = min.gamma, scale.const = scale.const, BIC.flag = BIC.flag)
 				states <- states0
 				states[j] <- d.max + 1
-				cat("\tStates:", states, "\tlogL =", Q$logl1, "\n")	
+				if (!silent) cat("\tStates:", states, "\tlogL =", Q$logl1, "\n")	
 
 				if (BIC.flag){ 			
 					if (!is.nan(Q$BIC1)){
@@ -328,25 +328,25 @@ separate.states.BIC <- function(X, K, best.ll, best.states, eps, r, iter, min.ga
 	}
 
 	if (BIC.flag){
-
-		if (best.BIC == curr.BIC){
-			 cat("\tNo improvement reached...\n\n")
-		} else {
-			 cat("\tCurrent set of states:", best.states, "logL =", best.ll, "BIC =", best.BIC, "\n\n")
-			states0 <- best.states
+		if (!silent){
+			if (best.BIC == curr.BIC){
+				cat("\tNo improvement reached...\n\n")
+			} else {
+				cat("\tCurrent set of states:", best.states, "logL =", best.ll, "BIC =", best.BIC, "\n\n")
+				states0 <- best.states
+			}
 		}
-
 		return(list(states = best.states, ll = best.ll, BIC = best.BIC))
 
 	} else {
-
-		if (best.AIC == curr.AIC){
-			 cat("\tNo improvement reached...\n\n")
-		} else {
-			 cat("\tCurrent set of states:", best.states, "logL =", best.ll, "AIC =", best.AIC, "\n\n")
-			states0 <- best.states
+		if (!silent){
+			if (best.AIC == curr.AIC){
+				cat("\tNo improvement reached...\n\n")
+			} else {
+				cat("\tCurrent set of states:", best.states, "logL =", best.ll, "AIC =", best.AIC, "\n\n")
+				states0 <- best.states
+			}
 		}
-
 		return(list(states = best.states, ll = best.ll, AIC = best.AIC))
 
 	}
@@ -356,7 +356,7 @@ separate.states.BIC <- function(X, K, best.ll, best.states, eps, r, iter, min.ga
 
 
 
-combine.states.BIC <- function(X, K, best.ll, best.states, eps, r, iter, min.gamma, scale.const, BIC.flag){
+combine.states.BIC <- function(X, K, best.ll, best.states, eps, r, iter, min.gamma, scale.const, BIC.flag, silent){
 
 
 	p <- dim(X)[1]
@@ -374,7 +374,7 @@ combine.states.BIC <- function(X, K, best.ll, best.states, eps, r, iter, min.gam
 	d0 <- d - 1
 	states <- best.states
 
-	cat("\nSTAGE A: Merging equivalence blocks...\n\n")
+	if (!silent) cat("\nSTAGE A: Merging equivalence blocks...\n\n")
 
 	for (i in 1:(d-1)){
 
@@ -398,7 +398,7 @@ combine.states.BIC <- function(X, K, best.ll, best.states, eps, r, iter, min.gam
 			adjust <- adjustment.logl(states0, X)
 
 			ll <- Q$logl + adjust - n.seq * log(p) + n.seq * log(d0)
-		 	cat("\tStates:", states0, "\tlogL =", ll, "\n")
+		 	if (!silent) cat("\tStates:", states0, "\tlogL =", ll, "\n")
 
 			M <- K * d0 * (d0 - 1) + K - 1
 
@@ -434,21 +434,23 @@ combine.states.BIC <- function(X, K, best.ll, best.states, eps, r, iter, min.gam
 
 
 	if (BIC.flag){
-
-		if (best.BIC == curr.BIC){
-			cat("\tNo improvement reached...\n\n")
-		} else {
-			cat("\tCurrent set of states:", best.states, "logL =", best.ll, "BIC =", best.BIC, "\n\n")
+		if (!silent){
+			if (best.BIC == curr.BIC){
+				cat("\tNo improvement reached...\n\n")
+			} else {
+				cat("\tCurrent set of states:", best.states, "logL =", best.ll, "BIC =", best.BIC, "\n\n")
+			}
 		}
-
+	
 		return(list(states = best.states, ll = best.ll, BIC = best.BIC))
 
 	} else {
-
-		if (best.AIC == curr.AIC){
-			cat("\tNo improvement reached...\n\n")
-		} else {
-			cat("\tCurrent set of states:", best.states, "logL =", best.ll, "AIC =", best.AIC, "\n\n")
+		if (!silent){
+			if (best.AIC == curr.AIC){
+				cat("\tNo improvement reached...\n\n")
+			} else {
+				cat("\tCurrent set of states:", best.states, "logL =", best.ll, "AIC =", best.AIC, "\n\n")
+			}
 		}
 
 		return(list(states = best.states, ll = best.ll, AIC = best.AIC))
@@ -478,7 +480,7 @@ renumerate.seq <- function(x){
 
 
 
-click.forward <- function(X, K, eps = 1e-10, r = 100, iter = 5, bic = TRUE, min.gamma = 1e-3, scale.const = 1.0){
+click.forward <- function(X, K, eps = 1e-10, r = 100, iter = 5, bic = TRUE, min.gamma = 1e-3, scale.const = 1.0, silent = FALSE){
 
 	if (K < 1) stop("Wrong number of mixture components K...\n")
 	if (eps <= 0) stop("Wrong value of eps...\n")
@@ -496,7 +498,7 @@ click.forward <- function(X, K, eps = 1e-10, r = 100, iter = 5, bic = TRUE, min.
 
 	repeat{
 
-		B <- separate.states.BIC(X = X, K = K, best.ll = best.ll, best.states = best.states, eps = eps, r = r, iter = iter, min.gamma = min.gamma, scale.const = scale.const, BIC.flag = bic)
+		B <- separate.states.BIC(X = X, K = K, best.ll = best.ll, best.states = best.states, eps = eps, r = r, iter = iter, min.gamma = min.gamma, scale.const = scale.const, BIC.flag = bic, silent)
 
 		if (sum(B$states != best.states) == 0){
 			break
@@ -506,7 +508,7 @@ click.forward <- function(X, K, eps = 1e-10, r = 100, iter = 5, bic = TRUE, min.
 		best.ll <- B$ll
 
 
-		A <- rearrange.states(X = X, K = K, best.ll = best.ll, best.states = best.states, eps = eps, r = r, iter = iter, min.gamma = min.gamma, scale.const = scale.const, BIC.flag = bic)
+		A <- rearrange.states(X = X, K = K, best.ll = best.ll, best.states = best.states, eps = eps, r = r, iter = iter, min.gamma = min.gamma, scale.const = scale.const, BIC.flag = bic, silent)
 
 		best.states <- A$states
 		best.ll <- A$ll
@@ -544,7 +546,7 @@ click.forward <- function(X, K, eps = 1e-10, r = 100, iter = 5, bic = TRUE, min.
 
 
 
-click.backward <- function(X, K, eps = 1e-10, r = 100, iter = 5, bic = TRUE, min.gamma = 1e-3, scale.const = 1.0){
+click.backward <- function(X, K, eps = 1e-10, r = 100, iter = 5, bic = TRUE, min.gamma = 1e-3, scale.const = 1.0, silent = FALSE){
 
 	if (K < 1) stop("Wrong number of mixture components K...\n")
 	if (eps <= 0) stop("Wrong value of eps...\n")
@@ -571,7 +573,7 @@ click.backward <- function(X, K, eps = 1e-10, r = 100, iter = 5, bic = TRUE, min
 
 		if (max(best.states) == 2) break
 
-		B <- combine.states.BIC(X = X, K = K, best.ll = best.ll, best.states = best.states, eps = eps, r = r, iter = iter, min.gamma = min.gamma, scale.const = scale.const, BIC.flag = bic)
+		B <- combine.states.BIC(X = X, K = K, best.ll = best.ll, best.states = best.states, eps = eps, r = r, iter = iter, min.gamma = min.gamma, scale.const = scale.const, BIC.flag = bic, silent = silent)
 
 		if (sum(B$states != best.states) == 0){
 			break
@@ -581,7 +583,7 @@ click.backward <- function(X, K, eps = 1e-10, r = 100, iter = 5, bic = TRUE, min
 		best.ll <- B$ll
 
 
-		A <- rearrange.states(X = X, K = K, best.ll = best.ll, best.states = best.states, eps = eps, r = r, iter = iter, min.gamma = min.gamma, scale.const = scale.const, BIC.flag = bic)
+		A <- rearrange.states(X = X, K = K, best.ll = best.ll, best.states = best.states, eps = eps, r = r, iter = iter, min.gamma = min.gamma, scale.const = scale.const, BIC.flag = bic, silent = silent)
 		best.states <- A$states
 		best.ll <- A$ll
 		if (bic){
@@ -703,7 +705,6 @@ click.predict <- function(M = 1, gamma, pr = NULL){
 	return(state.prob)
 
 }
-
 
 
 

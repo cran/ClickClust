@@ -10,3 +10,9 @@ Version 1.1.2
 22-11-2014
 Version 1.1.3
 * Classes assigned to returned objects.
+
+07-04-2015
+Version 1.1.4
+* msnbc data added.
+* synth data added.
+* click.plot() function enhanced.

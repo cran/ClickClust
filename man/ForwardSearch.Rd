@@ -7,7 +7,7 @@ Runs forward search to detect blocks of equivalent states.
 }
 \usage{
 click.forward(X, K, eps = 1e-10, r = 100, iter = 5, bic = TRUE,
-  min.gamma = 1e-3, scale.const = 1.0)
+  min.gamma = 1e-3, scale.const = 1.0, silent = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -19,6 +19,7 @@ click.forward(X, K, eps = 1e-10, r = 100, iter = 5, bic = TRUE,
   \item{bic }{ flag indicating whether BIC or AIC is used}
   \item{min.gamma }{ lower bound for transition probabilities }
   \item{scale.const }{ scaling constant for avoiding numerical issues }
+  \item{silent }{ output control }
 }
 \details{
 Runs forward search to detect blocks of equivalent states. States i and j are called equivalent if their behavior expressed in terms of transition probabilities is identical, i.e., the probabilities of leaving i and j to visit another state h are the same as well as the probabilities of coming to i and j from another state h are the same; this condition should hold for all mixture components.
@@ -72,7 +73,7 @@ TP[,,2] <- TP2
 # DATA SIMULATION
 
 A <- click.sim(n = n.seq, int = c(10, 50), alpha = mix.prop, gamma = TP)
-C <- click.read(p, A$S)
+C <- click.read(A$S)
 
 
 # FORWARD SEARCH

@@ -23,7 +23,7 @@ TP[,,2] <- matrix(c(0.15, 0.35, 0.20, 0.20, 0.10,
      
 A <- click.sim(n = n.seq, int = c(10, 50), alpha = mix.prop, gamma = TP)
 
-C <- click.read(p, A$S)
+C <- click.read(A$S)
 
 N2 <- click.EM(X = C$X, K = 2); N2$BIC
 M2 <- click.EM(X = C$X, y = C$y, K = 2); M2$BIC

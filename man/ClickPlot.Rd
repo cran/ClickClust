@@ -6,17 +6,21 @@
 Constructs a click-plot for the clustering solution.
 }
 \usage{
-click.plot(X, y = NULL, file = NULL, id, margs = c(0.1, 0.1, 0.1, 0.1),
+click.plot(X, y = NULL, file = NULL, id, states = NULL, marg = 1,
   font.cex = 2, font.col = "black", cell.cex = 1, cell.lwd = 1.3,
-  cell.col = "red", sep.lwd = 1.3, sep.col = "magenta", obs.lwd = 0.5)
+  cell.col = "black", sep.lwd = 1.3, sep.col = "black",
+  obs.lwd = NULL, colors = c("lightcyan", "pink", "darkred"),
+  col.levels = 8, legend = TRUE, leg.cex = 1.3, top.srt = 0,
+  frame = TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{X }{ dataset array (p x p x n) }
   \item{y }{ vector of initial states (length n) }
   \item{file }{ name of the output pdf-file }
-  \item{id }{ estimated classification vector (length n) }
-  \item{margs }{ plot margins }
+  \item{id }{ classification vector (length n) }
+  \item{states }{ vector of state labels (length p) }
+  \item{marg }{ plot margin value (for the left and top) }
   \item{font.cex }{ magnification of labels }
   \item{font.col }{ color of labels }
   \item{cell.cex }{ magnification of cells }
@@ -25,9 +29,15 @@ click.plot(X, y = NULL, file = NULL, id, margs = c(0.1, 0.1, 0.1, 0.1),
   \item{sep.lwd }{ width of separator lines }
   \item{sep.col }{ color of separator lines }
   \item{obs.lwd }{ width of observation lines }
+  \item{colors }{ edge colors for interpolation }
+  \item{col.levels }{ number of colors obtained by interpolation }
+  \item{legend }{ legend of color hues }
+  \item{leg.cex }{ magnification of legend labels }
+  \item{top.srt }{ rotation of state names in the top }
+  \item{frame }{ frame around the plot }
 }
 \details{
-Constructs a click-plot for the provided clustering solution. If the parameter 'file' is specified, the constructed plot will be saved in the pdf-file with the name 'file'.
+Constructs a click-plot for the provided clustering solution. Click-plot is a graphical display representing relative transition frequencies for the partitioning specified via the parameter 'id'. If the parameter 'file' is specified, the constructed plot will be saved in the pdf-file with the name 'file'. If the width of observation lines 'obs.lwd' is not specified, median colors will be used for all cell segments.
 }
 \references{
 Melnykov, V. (2014) Model-based biclustering of clickstream data, accepted by Computational Statistics & Data Analysis.
@@ -67,7 +77,7 @@ TP[,,2] <- TP2
 # DATA SIMULATION
 
 A <- click.sim(n = n.seq, int = c(10, 50), alpha = mix.prop, gamma = TP)
-C <- click.read(p, A$S)
+C <- click.read(A$S)
 
 
 # EM ALGORITHM

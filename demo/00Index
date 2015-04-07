@@ -1,11 +1,13 @@
-demoClickClust	ClickClust	Tests main functions
-sec3.1_ex1	ClickClust	The example 1 of section 3.1
-sec3.2_ex1	ClickClust	The example 1 of section 3.2
-sec3.2_ex2	ClickClust	The example 2 of section 3.2
-sec3.3_ex1	ClickClust	The example 1 of section 3.3
-sec3.4_ex1	ClickClust	The example 1 of section 3.4
-sec3.4_ex2	ClickClust	The example 2 of section 3.4
-sec3.5_ex1	ClickClust	The example 1 of section 3.5
-sec3.6_ex1	ClickClust	The example 1 of section 3.6
-sec3.6_ex2	ClickClust	The example 2 of section 3.6
-utility		ClickClust	The utility study of section 4
+demoClickClust		ClickClust	Tests main functions
+ReadData		ClickClust	Shows how to read data
+EMalgorithm1		ClickClust	EM algorithm without initial state probabilities
+EMalgorithm2		ClickClust	EM algorithm with initial state probabilities
+ConfidenceIntervals	ClickClust	Confidence intervals calculation
+BackwardSelection	ClickClust	Backward state selection
+ForwardSelection	ClickClust	Forward state selection
+StatePrediction		ClickClust	State prediction
+ClickPlot1		ClickClust	Constructing click-plot 1
+ClickPlot2		ClickClust	Constructing click-plot 2
+DataSimulation		ClickClust	Shows how to simulate data
+utility			ClickClust	Illustrative example
+msnbc323		ClickClust	Analysis of msnbc323 dataset

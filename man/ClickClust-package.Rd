@@ -60,7 +60,7 @@ TP[,,2] <- TP2
 # DATA SIMULATION
 
 A <- click.sim(n = n.seq, int = c(10, 50), alpha = mix.prop, gamma = TP)
-C <- click.read(p, A$S)
+C <- click.read(A$S)
 
 
 # EM ALGORITHM

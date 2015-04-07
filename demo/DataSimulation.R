@@ -1,4 +1,3 @@
-### Example for Section 3.1
 
 set.seed(123)
      
@@ -23,5 +22,3 @@ TP[,,2] <- matrix(c(0.15, 0.35, 0.20, 0.20, 0.10,
 # DATA SIMULATION
      
 A <- click.sim(n = n.seq, int = c(10, 50), alpha = mix.prop, gamma = TP)
-
-C <- click.read(p, A$S)

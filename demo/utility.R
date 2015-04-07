@@ -64,7 +64,7 @@ TP[,,3] <- TP3
 # DATA SIMULATION
 
 A <- click.sim(n = n.seq, int = c(10, 100), alpha = mix.prop, gamma = TP)
-C <- click.read(p, A$S)
+C <- click.read(A$S)
 
 # DATA ANALYSIS USING THE NAIVE APPROACH (with beta's)
 
@@ -103,10 +103,7 @@ rbind(c(M1$BIC, M2$BIC, M3$BIC, M4$BIC, M5$BIC),
       c(F1$BIC, F2$BIC, F3$BIC, F4$BIC, F5$BIC),
       c(B1$BIC, B2$BIC, B3$BIC, B4$BIC, B5$BIC))
 
-click.plot(X = C$X, id = B3$id, obs.lwd = 0.4, cell.col = "black", sep.col = "black")
-
-
-
+click.plot(X = C$X, id = B3$id, colors = c("lightyellow", "red", "darkred"), col.levels = 10)
 
 
 
