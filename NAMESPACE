@@ -1,5 +1,9 @@
 useDynLib(ClickClust)
 
+importFrom("grDevices", "colorRampPalette", "dev.copy2pdf")
+importFrom("graphics", "box", "lines", "par", "plot", "polygon", "text")
+importFrom("stats", "median", "rmultinom", "runif")
+
 export(click.EM)
 export(click.sim)
 export(click.read)

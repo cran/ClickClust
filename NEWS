@@ -16,3 +16,8 @@ Version 1.1.4
 * msnbc data added.
 * synth data added.
 * click.plot() function enhanced.
+
+22-10-2016
+Version 1.1.5
+* citation to JSS paper added.
+* some minor improvements.

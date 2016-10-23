@@ -13,9 +13,9 @@ There are 5 states denoted as \code{A}, \code{B}, \code{C}, \code{D}, and \code{
 \format{$data contains a vector of 250 strings representing categorical sequences; $id is the original classification vector.}
 \source{Melnykov, V. (2015)}
 \references{
-Melnykov, V. (2014) Model-based biclustering of clickstream data, accepted by Computational Statistics & Data Analysis.
+Melnykov, V. (2016) Model-Based Biclustering of Clickstream Data, Computational Statistics and Data Analysis, 93, 31-45.
 
-Melnykov, V. (2015) Model-based biclustering of clickstream data, under review at Journal of Statistical Software.
+Melnykov, V. (2016) ClickClust: An R Package for Model-Based Clustering of Categorical Sequences, Journal of Statistical Software, 74, 1-34.
 }
 \seealso{click.read}
 
