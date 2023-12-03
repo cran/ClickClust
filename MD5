@@ -1,6 +1,6 @@
-3a216a8a5f1d33cc0cd82b37ac95fa66 *DESCRIPTION
+7286f75823c3d3a6ab1a1fffbe308c40 *DESCRIPTION
 ba0ade22edb5c1aebfedce840ab8afb3 *NAMESPACE
-d1e1d4ebb4b2a398f57c3dac42f47833 *NEWS
+3099678de4f01c47c480e0f864dee6df *NEWS
 414996df10c804b62c7bc993a7667299 *R/libClickClust.R
 dd45e3139d3131cc42f905da09c8ae68 *R/libGraphics.R
 58127ea90833dcc9cf234728f5b5d536 *R/main.R
@@ -26,7 +26,7 @@ dd30e26850fec95583f31b38f3998c6c *inst/CITATION
 d7222652dca3b2d09275cb93e10e41dc *man/B3.Rd
 a88f2d4b96d1faa581ce85a5e9dabc94 *man/BackwardSearch.Rd
 508324ff9fa3254849d33649b85bc544 *man/C.Rd
-886d761e32c8d4a6840c586ba72f3891 *man/ClickClust-package.Rd
+39ce4cd683f2b5f624419a245440f181 *man/ClickClust-package.Rd
 4fd5013398d746bee3af1c4bba6def56 *man/ClickClust.Rd
 e3d668db862ece72c977551d98f6928d *man/ClickPlot.Rd
 4793a6b8019cdab07b0e28839e0473fa *man/ForwardSearch.Rd

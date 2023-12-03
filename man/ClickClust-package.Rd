@@ -9,14 +9,7 @@ Model-based clustering of categorical sequences
 The package runs finite mixture modeling and model-based clustering for categorical sequences
 }
 \details{
-\tabular{ll}{
-Package: \tab ClickClust\cr
-Type: \tab Package\cr
-Version: \tab 1.0\cr
-Date: \tab 2014-04-04\cr
-License: \tab GPL (>= 2)\cr
-LazyLoad: \tab no\cr
-}
+
 Function 'click.EM' runs the EM algorithm for finite mixture models with Markov model components.
 
 }

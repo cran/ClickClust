@@ -1,9 +1,9 @@
 Package: ClickClust
-Version: 1.1.5
-Date: 2016-10-22
+Version: 1.1.6
+Date: 2023-12-02
 Title: Model-Based Clustering of Categorical Sequences
 Authors@R: c(person("Volodymyr", "Melnykov", role = c("aut", "cre"),
-		email = "vmelnykov@cba.ua.edu"),
+		email = "vmelnykov@ua.edu"),
              person("Rouben", "Rostamian", role = c("ctb", "cph"),
                     comment = "memory allocation in c"))
 Depends: R (>= 3.0.0)
@@ -11,10 +11,10 @@ LazyLoad: yes
 LazyData: no
 Description: Clustering categorical sequences by means of finite mixtures with Markov model components is the main utility of ClickClust. The package also allows detecting blocks of equivalent states by forward and backward state selection procedures.
 License: GPL (>= 2)
-Packaged: 2016-10-22 22:06:09 UTC; root
+Packaged: 2023-12-02 19:47:51 UTC; root
 Author: Volodymyr Melnykov [aut, cre],
   Rouben Rostamian [ctb, cph] (memory allocation in c)
-Maintainer: Volodymyr Melnykov <vmelnykov@cba.ua.edu>
+Maintainer: Volodymyr Melnykov <vmelnykov@ua.edu>
 NeedsCompilation: yes
 Repository: CRAN
-Date/Publication: 2016-10-23 00:20:21
+Date/Publication: 2023-12-03 05:50:02 UTC
